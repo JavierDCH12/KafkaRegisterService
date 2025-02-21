@@ -21,10 +21,14 @@ public class User {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
+    public User(){};
+
     public User(String email, String name) {
         this.email = email;
         this.name = name;
     }
+
+
 
     public Long getId() {
         return id;

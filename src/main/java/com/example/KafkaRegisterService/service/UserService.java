@@ -38,8 +38,11 @@ public class UserService {
         //Save user
         var user = new User(email, name);
         userRepository.save(user);
+
+        String eventMessage = "SUCCESS: User {} registered successfully"+ email;
         logger.info("SUCCESS: User {} registered successfully", email);
-        kafkaTemplate.send("user-registration", "User registered: " + user.getEmail() + ", " + user.getName()  );
+
+        kafkaTemplate.send("user-registration", eventMessage);
 
 
         return user;
