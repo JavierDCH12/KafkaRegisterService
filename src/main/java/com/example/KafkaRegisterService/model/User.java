@@ -3,6 +3,8 @@ package com.example.KafkaRegisterService.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -15,6 +17,9 @@ public class User {
 
     @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     public User(String email, String name) {
         this.email = email;
@@ -43,5 +48,13 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
